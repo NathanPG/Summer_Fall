@@ -18,6 +18,16 @@ void APlayerCharacter::BeginPlay()
 	
 }
 
+void APlayerCharacter::MoveForward(float Value)
+{
+	AddMovementInput(GetActorForwardVector() * Value);
+}
+
+void APlayerCharacter::MoveRight(float Value)
+{
+	AddMovementInput(GetActorRightVector() * Value);
+}
+
 // Called every frame
 void APlayerCharacter::Tick(float DeltaTime)
 {
@@ -29,6 +39,12 @@ void APlayerCharacter::Tick(float DeltaTime)
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	//PlayerInputComponent->BindAxis("MoveForward",this,&APlayerCharacter::MoveForward);
+	//PlayerInputComponent->BindAxis("MoveRight",this,&APlayerCharacter::MoveRight);
+}
 
+void APlayerCharacter::OverlapHandler(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	
 }
 
